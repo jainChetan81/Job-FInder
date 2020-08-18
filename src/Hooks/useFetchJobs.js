@@ -1,14 +1,17 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
-const BASE_URL =
-    "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json";
+
 const ACTIONS = {
     MAKE_REQUEST: "make-request",
     GET_DATA: "get-data",
     ERROR: "error",
     UPDATE_HAS_NEXT_PAGE: "update-has-next-page",
 };
-const reducer = (state, action) => {
+
+const BASE_URL =
+    "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json";
+
+function reducer(state, action) {
     switch (action.type) {
         case ACTIONS.MAKE_REQUEST:
             return { loading: true, jobs: [] };
@@ -26,17 +29,17 @@ const reducer = (state, action) => {
         default:
             return state;
     }
-};
+}
 
-const useFetchJobs = (params, page) => {
-    const [state, dispatch] = useReducer(reducer, { jobs: [], loading: true }); //Todo: didn't understand this
+export default function useFetchJobs(params, page) {
+    const [state, dispatch] = useReducer(reducer, { jobs: [], loading: true });
+
     useEffect(() => {
-        //Todo: didn't understand this
-        const cancelToken = axios.CancelToken.source(); //Todo: didn't understand this
+        const cancelToken1 = axios.CancelToken.source();
         dispatch({ type: ACTIONS.MAKE_REQUEST });
         axios
             .get(BASE_URL, {
-                //todo:to add params to a url
+                cancelToken: cancelToken1.token,
                 params: { markdown: true, page: page, ...params },
             })
             .then((res) => {
@@ -49,27 +52,29 @@ const useFetchJobs = (params, page) => {
                 if (axios.isCancel(e)) return;
                 dispatch({ type: ACTIONS.ERROR, payload: { error: e } });
             });
+
         const cancelToken2 = axios.CancelToken.source();
         axios
             .get(BASE_URL, {
+                cancelToken: cancelToken2.token,
                 params: { markdown: true, page: page + 1, ...params },
             })
             .then((res) => {
                 dispatch({
                     type: ACTIONS.UPDATE_HAS_NEXT_PAGE,
-                    payload: { jobs: { hasNextPage: res.data !== 0 } },
+                    payload: { hasNextPage: res.data.length !== 0 },
                 });
             })
             .catch((e) => {
                 if (axios.isCancel(e)) return;
                 dispatch({ type: ACTIONS.ERROR, payload: { error: e } });
             });
+
         return () => {
-            cancelToken.cancel();
+            cancelToken1.cancel();
             cancelToken2.cancel();
         };
     }, [params, page]);
-    return state;
-};
 
-export default useFetchJobs;
+    return state;
+}
