@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Job-FInder/static/css/main.69eda509.chunk.css",
+    "main.js": "/Job-FInder/static/js/main.4ee7add5.chunk.js",
+    "main.js.map": "/Job-FInder/static/js/main.4ee7add5.chunk.js.map",
+    "runtime-main.js": "/Job-FInder/static/js/runtime-main.a1ecadea.js",
+    "runtime-main.js.map": "/Job-FInder/static/js/runtime-main.a1ecadea.js.map",
+    "static/css/2.11829350.chunk.css": "/Job-FInder/static/css/2.11829350.chunk.css",
+    "static/js/2.ea2d68d9.chunk.js": "/Job-FInder/static/js/2.ea2d68d9.chunk.js",
+    "static/js/2.ea2d68d9.chunk.js.map": "/Job-FInder/static/js/2.ea2d68d9.chunk.js.map",
+    "index.html": "/Job-FInder/index.html",
+    "precache-manifest.d2b39813c55c3dc125b049358c48eb11.js": "/Job-FInder/precache-manifest.d2b39813c55c3dc125b049358c48eb11.js",
+    "service-worker.js": "/Job-FInder/service-worker.js",
+    "static/css/2.11829350.chunk.css.map": "/Job-FInder/static/css/2.11829350.chunk.css.map",
+    "static/css/main.69eda509.chunk.css.map": "/Job-FInder/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.ea2d68d9.chunk.js.LICENSE.txt": "/Job-FInder/static/js/2.ea2d68d9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a1ecadea.js",
+    "static/css/2.11829350.chunk.css",
+    "static/js/2.ea2d68d9.chunk.js",
+    "static/css/main.69eda509.chunk.css",
+    "static/js/main.4ee7add5.chunk.js"
+  ]
+}
